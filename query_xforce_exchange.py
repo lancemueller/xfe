@@ -40,7 +40,7 @@ if __name__ == "__main__":
     parser.add_option("-f", "--file", dest="malfile" , default=None,
                       help="file (md5 hash) to be checked by Exchange IBM Xforce", metavar="filename")
     parser.add_option("-m", "--md5", dest="hash" , default=None,
-                      help="hash to be checked by Exchange IBM Xforce", metavar="filename")
+                      help="hash to be checked by Exchange IBM Xforce", metavar="hashvalue")
     parser.add_option("-x", "--xfid", dest="s_xfid" , default=None,
                       help="XFID to be used ", metavar="xfid")
     parser.add_option("-c", "--cve", dest="s_cve" , default=None,
@@ -77,3 +77,6 @@ elif (options.s_xfid is not None ):
     send_request(url+"/vulnerabilities/", options.s_xfid, headers)
 elif (options.hash is not None ):
     send_request(url+"/malware/", options.hash, headers)
+
+if len(sys.argv[1:]) == 0:
+    parser.print_help()

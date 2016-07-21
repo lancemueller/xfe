@@ -1,7 +1,6 @@
 # Lance Mueller
 # July 21, 2016
 
-
 import requests
 import sys
 import json

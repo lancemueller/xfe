@@ -25,12 +25,20 @@ def get_md5(filename):
 if __name__ == "__main__":
     key = "<api_key_here>" # https://exchange.xforce.ibmcloud.com/settings/api
     password ="<api_password_here>"
-
+    
+    #for python 2.7 encode token in base64 in this way
     token = base64.b64encode(key + ":" + password)
+    
+    #for python 3 use these 3 lines to encode token
+    '''
+    token_bytes = (key + ":" + password).encode("ascii")
+    base64_bytes = base64.b64encode(token_bytes)
+    token = base64_bytes.decode("ascii")
+    '''
+
     headers = {'Authorization': "Basic " + token, 'Accept': 'application/json'}
     url = "https://api.xforce.ibmcloud.com:443"
-
-
+    
     parser = OptionParser()
     parser.add_option("-u", "--url", dest="s_url", default=None, 
                       help="URL to be checked by Exchange IBM Xforce", metavar="scanurl")
